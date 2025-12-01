@@ -8,9 +8,10 @@ app.secret_key = "supersecretkey"  # replace with env var in production
 STOPS = [
     {"name": "Amsterdam Centraal", "time": "16:42"},
     {"name": "Amsterdam Amstel", "time": "16:46"},
+    {"name": "Duivendrecht", "time": "16:48"},
     {"name": "Amsterdam Bijlmer Arena", "time": "16:50"},
-    {"name": "Maarssen", "time": "17:57"},
-    {"name": "Utrecht Centraal", "time": "18:00"},
+    {"name": "Adcoude Station", "time": "17:54"},
+    {"name": "Breukelen Station", "time": "17:57"},
 ]
 
 
@@ -89,5 +90,6 @@ def index():
 
 if __name__ == "__main__":
     app.run(debug=True)
+
 
 
