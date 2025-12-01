@@ -84,9 +84,10 @@ def index():
 
     return render_template("index.html",
                            stops=stops_render,
-                           title="RE6 Naar Utrect Centraal",
+                           title="IC Naar Utrect Centraal",
                            sample_image=SAMPLE_IMAGE)
 
 if __name__ == "__main__":
     app.run(debug=True)
+
 
