@@ -6,12 +6,13 @@ app.secret_key = "supersecretkey"  # replace with env var in production
 
 # Stops (base scheduled times)
 STOPS = [
-    {"name":"Amsterdam Centraal","time":"16:42"},
-    {"name":"Amsterdam Amstel","time":"16:46"},
-    {"name":"Amsterdam Bijlmer Arena","time":"16:50"},
-    {"name":"Maarssen":"17:57"},
-    {"name":"Utrecht Centraal","time":"18:00"},
+    {"name": "Amsterdam Centraal", "time": "16:42"},
+    {"name": "Amsterdam Amstel", "time": "16:46"},
+    {"name": "Amsterdam Bijlmer Arena", "time": "16:50"},
+    {"name": "Maarssen", "time": "17:57"},
+    {"name": "Utrecht Centraal", "time": "18:00"},
 ]
+
 
 # uploaded image local path (will be converted by your environment)
 SAMPLE_IMAGE = "/mnt/data/48b3c56f-2692-49b6-9e22-bf2e1af7218a.png"
@@ -88,3 +89,4 @@ def index():
 
 if __name__ == "__main__":
     app.run(debug=True)
+
