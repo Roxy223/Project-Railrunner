@@ -1,67 +1,58 @@
 from flask import Flask, render_template, request, redirect, url_for, session
 from datetime import datetime, timedelta
+import os
 
 app = Flask(__name__)
-app.secret_key = "supersecretkey"  # replace with env var in production
+app.secret_key = os.environ.get("FLASK_SECRET", "dev-key")
 
-# Stops (base scheduled times)
 STOPS = [
     {"name": "Amsterdam Centraal", "time": "16:42"},
     {"name": "Amsterdam Amstel", "time": "16:46"},
     {"name": "Duivendrecht", "time": "16:48"},
     {"name": "Amsterdam Bijlmer Arena", "time": "16:50"},
-    {"name": "Adcoude Station", "time": "17:54"},
+    {"name": "Abcoude Station", "time": "17:54"},
     {"name": "Breukelen Station", "time": "17:57"},
 ]
 
+SAMPLE_IMAGE = ""
 
-# uploaded image local path (will be converted by your environment)
-SAMPLE_IMAGE = "/mnt/data/48b3c56f-2692-49b6-9e22-bf2e1af7218a.png"
-
-def add_minutes(time_str, minutes):
-    """Add (or subtract) minutes to HH:MM string and return HH:MM (wraps past midnight)."""
-    h, m = map(int, time_str.split(":"))
-    dt = datetime(2000,1,1,h,m) + timedelta(minutes=minutes)
+def add_minutes(t, mins):
+    h, m = map(int, t.split(":"))
+    dt = datetime(2000, 1, 1, h, m) + timedelta(minutes=mins)
     return dt.strftime("%H:%M")
 
 @app.route("/", methods=["GET", "POST"])
 def index():
-    # initialize session values
     if "times" not in session:
         session["times"] = [stop["time"] for stop in STOPS]
     if "delays" not in session:
-        session["delays"] = [0 for _ in STOPS]
+        session["delays"] = [0] * len(STOPS)
 
     if request.method == "POST":
-        # check each stop for updates or +/- clicks
-        for i, _ in enumerate(STOPS):
-            # +/- buttons: names like add_0, sub_0
+
+        for i in range(len(STOPS)):
+
             if f"add_{i}" in request.form:
-                session["delays"][i] = session["delays"][i] + 1
+                session["delays"][i] += 1
+
             if f"sub_{i}" in request.form:
-                session["delays"][i] = session["delays"][i] - 1  # allow negative for early
+                session["delays"][i] -= 1
 
-            # time input
-            tkey = f"time_{i}"
-            if tkey in request.form:
-                val = request.form.get(tkey, "").strip()
+            time_val = request.form.get(f"time_{i}")
+            if time_val:
                 try:
-                    datetime.strptime(val, "%H:%M")
-                    session["times"][i] = val
-                except Exception:
+                    datetime.strptime(time_val, "%H:%M")
+                    session["times"][i] = time_val
+                except:
                     pass
 
-            # delay numeric input (editable)
-            dkey = f"delay_{i}"
-            if dkey in request.form:
-                val = request.form.get(dkey, "").strip()
+            delay_val = request.form.get(f"delay_{i}")
+            if delay_val:
                 try:
-                    newd = int(float(val))
-                    session["delays"][i] = newd
-                except Exception:
+                    session["delays"][i] = int(float(delay_val))
+                except:
                     pass
 
-        # Reset
         if "reset_all" in request.form:
             session["times"] = [stop["time"] for stop in STOPS]
             session["delays"] = [0 for _ in STOPS]
@@ -69,27 +60,22 @@ def index():
         session.modified = True
         return redirect(url_for("index"))
 
-    # prepare stops
-    stops_render = []
+    stops_out = []
     for i, stop in enumerate(STOPS):
-        base_time = session["times"][i]
+        base = session["times"][i]
         delay = session["delays"][i]
-        updated_time = add_minutes(base_time, delay)
-        stops_render.append({
+        stops_out.append({
             "name": stop["name"],
-            "base_time": base_time,
+            "base_time": base,
             "delay": delay,
-            "updated_time": updated_time,
+            "updated_time": add_minutes(base, delay),
             "is_delayed": delay != 0
         })
 
     return render_template("index.html",
-                           stops=stops_render,
-                           title="IC Naar Utrect Centraal",
+                           stops=stops_out,
+                           title="IC Naar Utrecht Centraal",
                            sample_image=SAMPLE_IMAGE)
 
 if __name__ == "__main__":
     app.run(debug=True)
-
-
-
