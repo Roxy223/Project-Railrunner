@@ -10,7 +10,7 @@ STOPS = [
     {"name": "Amsterdam Amstel", "time": "16:46"},
     {"name": "Duivendrecht", "time": "16:48"},
     {"name": "Amsterdam Bijlmer Arena", "time": "16:50"},
-    {"name": "Abcoude Station", "time": "17:54"},
+    {"name": "Abcoude Station", "time": "17:53"},
     {"name": "Breukelen Station", "time": "17:57"},
 ]
 
@@ -79,3 +79,4 @@ def index():
 
 if __name__ == "__main__":
     app.run(debug=True)
+
