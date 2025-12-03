@@ -74,10 +74,11 @@ def index():
 
     return render_template("index.html",
                            stops=stops_out,
-                           title="IC Naar Utrecht Centraal",
+                           title="RS6 Naar Breukelen",
                            sample_image=SAMPLE_IMAGE)
 
 if __name__ == "__main__":
     # Render-compatible host + port binding
     port = int(os.environ.get("PORT", 5000))
     app.run(host="0.0.0.0", port=port)
+
