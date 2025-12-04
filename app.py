@@ -2,7 +2,7 @@ from flask import Flask, render_template, request, redirect, url_for, session
 from datetime import datetime, timedelta
 
 app = Flask(__name__)
-app.secret_key = "supersecretkey"  # Use environment variable in production
+app.secret_key = "supersecretkey"  # IMPORTANT: Use env variable in production
 
 # Full Line 33 schedule
 STOPS = [
@@ -40,51 +40,63 @@ STOPS = [
     {"name":"Oosterblok","time":"18:30"},
 ]
 
+
 def add_minutes(time_str, minutes):
     h, m = map(int, time_str.split(":"))
-    dt = datetime(2000,1,1,h,m) + timedelta(minutes=minutes)
+    dt = datetime(2000, 1, 1, h, m) + timedelta(minutes=minutes)
     return dt.strftime("%H:%M")
+
 
 @app.route("/", methods=["GET", "POST"])
 def index():
+    # Initialize session values
     if "delays" not in session:
-        session["delays"] = [0 for _ in STOPS]  # Start all delays at 0
+        session["delays"] = [0] * len(STOPS)
     if "times" not in session:
         session["times"] = [stop["time"] for stop in STOPS]
 
     if request.method == "POST":
-        for i, stop in enumerate(STOPS):
-            # Increment / decrement delays
-            if f"add_delay_{i}" in request.form:
-                session["delays"][i] += 1
-            if f"subtract_delay_{i}" in request.form:
-                session["delays"][i] = max(0, session["delays"][i]-1)
 
-            # Editable delay input
-            if f"delay_{i}" in request.form:
+        # Reset button
+        if "reset_all" in request.form:
+            session["delays"] = [0] * len(STOPS)
+            session["times"] = [stop["time"] for stop in STOPS]
+            session.modified = True
+            return redirect(url_for("index"))
+
+        # Process updates per stop
+        for i in range(len(STOPS)):
+
+            # Add delay
+            if request.form.get(f"add_delay_{i}"):
+                session["delays"][i] += 1
+
+            # Subtract delay
+            if request.form.get(f"subtract_delay_{i}"):
+                session["delays"][i] = max(0, session["delays"][i] - 1)
+
+            # Manual delay input
+            delay_input = request.form.get(f"delay_{i}")
+            if delay_input not in (None, ""):
                 try:
-                    new_delay = int(request.form[f"delay_{i}"])
+                    new_delay = int(delay_input)
                     session["delays"][i] = max(0, new_delay)
                 except ValueError:
                     pass
 
-            # Editable time input
-            if f"time_{i}" in request.form:
-                new_time = request.form[f"time_{i}"]
+            # Manual time input
+            time_input = request.form.get(f"time_{i}")
+            if time_input not in (None, ""):
                 try:
-                    datetime.strptime(new_time, "%H:%M")
-                    session["times"][i] = new_time
+                    datetime.strptime(time_input, "%H:%M")
+                    session["times"][i] = time_input
                 except ValueError:
                     pass
-
-        # Reset all button
-        if "reset_all" in request.form:
-            session["delays"] = [0 for _ in STOPS]
-            session["times"] = [stop["time"] for stop in STOPS]
 
         session.modified = True
         return redirect(url_for("index"))
 
+    # Prepare rendering
     stops_with_delays = []
     for i, stop in enumerate(STOPS):
         stops_with_delays.append({
@@ -95,6 +107,7 @@ def index():
         })
 
     return render_template("index.html", stops=stops_with_delays)
+
 
 if __name__ == "__main__":
     app.run(debug=True)
