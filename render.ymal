@@ -1,1 +1,10 @@
-
+services:
+  - type: web
+    name: bus-delay-app
+    env: python
+    buildCommand: "pip install -r requirements.txt"
+    startCommand: "gunicorn app:app"
+    plan: free
+    envVars:
+      - key: FLASK_ENV
+        value: production
