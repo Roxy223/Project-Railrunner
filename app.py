@@ -19,25 +19,7 @@ STOPS = [
     {"name":"Hogezand Strand","time":"18:00"},
     {"name":"HZ WalenbW","time":"18:01"},
     {"name":"Hoogzand Centrum","time":"18:02"},
-    {"name":"Zaandams weg","time":"18:03"},
-    {"name":"Bosweg","time":"18:05"},
-    {"name":"Bergenlaan","time":"18:06"},
-    {"name":"HVBergenlaan","time":"18:07"},
-    {"name":"Zaandam Centrum","time":"18:09"},
-    {"name":"HVBergenlaan","time":"18:11"},
-    {"name":"Bergenlaan","time":"18:12"},
-    {"name":"Bosweg","time":"18:13"},
-    {"name":"Zaandams Weg","time":"18:14"},
-    {"name":"HoogZand Centrum","time":"18:16"},
-    {"name":"HZ WalenBW","time":"18:17"},
-    {"name":"Hoogzandweg","time":"18:18"},
-    {"name":"Rembrand CNTRL","time":"18:19"},
-    {"name":"Oostplein","time":"18:22"},
-    {"name":"De veer QD","time":"18:25"},
-    {"name":"BosWater","time":"18:26"},
-    {"name":"Damweg","time":"18:28"},
-    {"name":"Schuurplein","time":"18:29"},
-    {"name":"Oosterblok","time":"18:30"},
+    {"name":"Zaandams weg","time":"18:03"}
 ]
 
 
@@ -114,5 +96,6 @@ import os
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))
     app.run(host="0.0.0.0", port=port)
+
 
 
