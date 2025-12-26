@@ -6,9 +6,13 @@ app.secret_key = "supersecretkey"  # IMPORTANT: Use env variable in production
 
 # Full Line 33 schedule
 STOPS = [
-    {"name":"Zaandam Weg","time":"16:53"},
-    {"name":"Rembrand Centraal","time":"16:57"},
-    {"name":"Oosterblok","time":"17:03"}
+    {"name":"Den Helder","time":"23:46"},
+    {"name":"Schagen","time":"23:52"},
+    {"name":"Heerhugowaard","time":"23:56"},
+    {"name":"Alkmaar","time":"23:59"},
+    {"name":"Uitgeest","time":"00:05"},
+    {"name":"Assendelft","time":"00:08"},
+    {"name":"Wormerveer","time":"00:12"},
 ]
 
 
@@ -85,6 +89,7 @@ import os
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))
     app.run(host="0.0.0.0", port=port)
+
 
 
 
