@@ -6,37 +6,22 @@ app.secret_key = "supersecretkey"  # IMPORTANT: Use env variable in production
 
 # Full Line 33 schedule
 STOPS = [
-  {"name":"Oosterblok","time":"15:53"},
-    {"name":"BosWater","time":"15:55"},
-    {"name":"De veer QD","time":"15:55"},
-    {"name":"brugstraat","time":"15:56"},
-    {"name":"Komerplein","time":"15:56"},
-    {"name":"Oosterbrug","time":"15:57"},
-    {"name":"Oostplein","time":"15:57"},
-    {"name":"Rembrand CNTRL","time":"15:58"},
-    {"name":"Hoogzandweg","time":"15:59"},
-    {"name":"Hogezand Strand","time":"16:00"},
-    {"name":"HZ WalenbW","time":"16:01"},
-    {"name":"Hoogzand Centrum","time":"16:02"},
-    {"name":"Zaandams weg","time":"18:03"},
-    {"name":"Bosweg","time":"16:05"},
-    {"name":"Bergenlaan","time":"16:06"},
-    {"name":"HVBergenlaan","time":"16:07"},
-    {"name":"Zaandam Centrum","time":"16:09"},
-    {"name":"HVBergenlaan","time":"16:11"},
-    {"name":"Bergenlaan","time":"16:12"},
-    {"name":"Bosweg","time":"16:13"},
-    {"name":"Zaandams Weg","time":"16:14"},
-    {"name":"HoogZand Centrum","time":"16:16"},
-    {"name":"HZ WalenBW","time":"16:17"},
-    {"name":"Hoogzandweg","time":"16:18"},
-    {"name":"Rembrand CNTRL","time":"16:19"},
-    {"name":"Oostplein","time":"16:22"},
-    {"name":"De veer QD","time":"16:25"},
-    {"name":"BosWater","time":"18:26"},
-    {"name":"Damweg","time":"16:28"},
-    {"name":"Schuurplein","time":"16:29"},
-    {"name":"Oosterblok","time":"16:30"}
+  {"name":"Den Helder","time":"01:37"},
+  {"name":"Den Helder Zuid","time":"01:40"},
+  {"name":"Anna Palowona","time":"01:43"},
+  {"name":"Schagen","time":"01:46"},
+  {"name":"Heeruhugowaard","time":"01:49"},
+  {"name":"Alkmaar Noord","time":"01:53"},
+  {"name":"Alkmaar","time":"01:56"},
+  {"name":"Heiloo","time":"02:00"},
+  {"name":"Castricem","time":"02:04"},
+  {"name":"Uitgeest","time":"02:07"},
+  {"name":"AssenDelft","time":"02:10"},
+  {"name":"Wormerveer","time":"02:12"},
+  {"name":"Zaanse Schans","time":"02:16"},
+  {"name":"Kooz .a . Zaan","time":"02:19"},
+  {"name":"Zaandam","time":"02:23"},
+  {"name":"Amsterdam Sloterdijk","time":"02:27"},
 ]
 
 
@@ -113,6 +98,7 @@ import os
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))
     app.run(host="0.0.0.0", port=port)
+
 
 
 
