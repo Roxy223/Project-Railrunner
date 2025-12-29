@@ -21,7 +21,7 @@ STOPS = [
   {"name":"Zaanse Schans","time":"02:16"},
   {"name":"Kooz .a . Zaan","time":"02:19"},
   {"name":"Zaandam","time":"02:23"},
-  {"name":"Amsterdam Sloterdijk","time":"02:27"},
+  {"name":"Amsterdam Sloterdijk","time":"02:27"}
 ]
 
 
@@ -98,6 +98,7 @@ import os
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))
     app.run(host="0.0.0.0", port=port)
+
 
 
 
