@@ -6,22 +6,19 @@ app.secret_key = "supersecretkey"  # IMPORTANT: Use env variable in production
 
 # Full Line 33 schedule
 STOPS = [
-  {"name":"Den Helder","time":"01:37"},
-  {"name":"Den Helder Zuid","time":"01:40"},
-  {"name":"Anna Palowona","time":"01:43"},
-  {"name":"Schagen","time":"01:46"},
-  {"name":"Heeruhugowaard","time":"01:49"},
-  {"name":"Alkmaar Noord","time":"01:53"},
-  {"name":"Alkmaar","time":"01:56"},
-  {"name":"Heiloo","time":"02:00"},
-  {"name":"Castricem","time":"02:04"},
-  {"name":"Uitgeest","time":"02:07"},
-  {"name":"AssenDelft","time":"02:10"},
-  {"name":"Wormerveer","time":"02:12"},
-  {"name":"Zaanse Schans","time":"02:16"},
-  {"name":"Kooz .a . Zaan","time":"02:19"},
-  {"name":"Zaandam","time":"02:23"},
-  {"name":"Amsterdam Sloterdijk","time":"02:27"}
+    {"name":"Oosterblok","time":"17:53"},
+    {"name":"BosWater","time":"17:55"},
+    {"name":"De veer QD","time":"17:55"},
+    {"name":"brugstraat","time":"17:56"},
+    {"name":"Komerplein","time":"17:56"},
+    {"name":"Oosterbrug","time":"17:57"},
+    {"name":"Oostplein","time":"17:57"},
+    {"name":"Rembrand CNTRL","time":"17:58"},
+    {"name":"Hoogzandweg","time":"17:59"},
+    {"name":"Hogezand Strand","time":"18:00"},
+    {"name":"HZ WalenbW","time":"18:01"},
+    {"name":"Hoogzand Centrum","time":"18:02"},
+    {"name":"Zaandams weg","time":"18:03"}
 ]
 
 
@@ -98,6 +95,7 @@ import os
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))
     app.run(host="0.0.0.0", port=port)
+
 
 
 
