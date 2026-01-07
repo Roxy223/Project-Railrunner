@@ -6,22 +6,14 @@ app.secret_key = "supersecretkey"  # IMPORTANT: Use env variable in production
 
 # Full Line 33 schedule
 STOPS = [
-  {"name":"Den Helder","time":"04:37"},
-  {"name":"Den Helder Zuid","time":"04:40"},
-  {"name":"Anna Palowona","time":"04:43"},
-  {"name":"Schagen","time":"04:46"},
-  {"name":"Heeruhugowaard","time":"04:49"},
-  {"name":"Alkmaar Noord","time":"04:53"},
-  {"name":"Alkmaar","time":"04:56"},
-  {"name":"Heiloo","time":"05:00"},
-  {"name":"Castricem","time":"05:04"},
-  {"name":"Uitgeest","time":"05:07"},
-  {"name":"AssenDelft","time":"05:10"},
-  {"name":"Wormerveer","time":"05:12"},
-  {"name":"Zaanse Schans","time":"05:16"},
-  {"name":"Kooz .a . Zaan","time":"05:19"},
-  {"name":"Zaandam","time":"05:23"},
-  {"name":"Amsterdam Sloterdijk","time":"05:27"}
+  {"name":"Zwolle","time":"17:23"},
+  {"name":"Meppel","time":"17:38"},
+  {"name":"Hoogeveen","time":"17:49"},
+  {"name":"Beilen","time":"17:58"},
+  {"name":"Assen","time":"18:07"},
+  {"name":"Haren","time":"18:19"},
+  {"name":"Groningen Europapark","time":"18:24"},
+  {"name":"Groningen","time":"18:27"}
 ]
 
 
@@ -98,6 +90,7 @@ import os
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))
     app.run(host="0.0.0.0", port=port)
+
 
 
 
