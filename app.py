@@ -5,16 +5,19 @@ app = Flask(__name__)
 app.secret_key = "supersecretkey"  # IMPORTANT: Use env variable in production
 
 # Full Line 33 schedule
-STOPS = [
-  {"name":"Zwolle","time":"17:23"},
-  {"name":"Meppel","time":"17:38"},
-  {"name":"Hoogeveen","time":"17:49"},
-  {"name":"Beilen","time":"17:58"},
-  {"name":"Assen","time":"18:07"},
-  {"name":"Haren","time":"18:19"},
-  {"name":"Groningen Europapark","time":"18:24"},
-  {"name":"Groningen","time":"18:27"}
-]
+  {"name":"Oosterblok","time":"20:53"},
+    {"name":"BosWater","time":"20:55"},
+    {"name":"De veer QD","time":"20:55"},
+    {"name":"brugstraat","time":"20:56"},
+    {"name":"Komerplein","time":"20:56"},
+    {"name":"Oosterbrug","time":"20:57"},
+    {"name":"Oostplein","time":"20:57"},
+    {"name":"Rembrand CNTRL","time":"20:58"},
+    {"name":"Hoogzandweg","time":"20:59"},
+    {"name":"Hogezand Strand","time":"21:00"},
+    {"name":"HZ WalenbW","time":"21:01"},
+    {"name":"Hoogzand Centrum","time":"21:02"},
+    {"name":"Zaandams weg","time":"21:03"},
 
 
 def add_minutes(time_str, minutes):
@@ -90,6 +93,7 @@ import os
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))
     app.run(host="0.0.0.0", port=port)
+
 
 
 
