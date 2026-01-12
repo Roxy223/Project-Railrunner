@@ -5,7 +5,8 @@ app = Flask(__name__)
 app.secret_key = "supersecretkey"  # IMPORTANT: Use env variable in production
 
 # Full Line 33 schedule
-  {"name":"Oosterblok","time":"20:53"},
+  [
+{"name":"Oosterblok","time":"20:53"},
     {"name":"BosWater","time":"20:55"},
     {"name":"De veer QD","time":"20:55"},
     {"name":"brugstraat","time":"20:56"},
@@ -18,6 +19,7 @@ app.secret_key = "supersecretkey"  # IMPORTANT: Use env variable in production
     {"name":"HZ WalenbW","time":"21:01"},
     {"name":"Hoogzand Centrum","time":"21:02"},
     {"name":"Zaandams weg","time":"21:03"}
+  ]
 
 
 def add_minutes(time_str, minutes):
@@ -93,6 +95,7 @@ import os
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))
     app.run(host="0.0.0.0", port=port)
+
 
 
 
