@@ -17,7 +17,7 @@ app.secret_key = "supersecretkey"  # IMPORTANT: Use env variable in production
     {"name":"Hogezand Strand","time":"21:00"},
     {"name":"HZ WalenbW","time":"21:01"},
     {"name":"Hoogzand Centrum","time":"21:02"},
-    {"name":"Zaandams weg","time":"21:03"},
+    {"name":"Zaandams weg","time":"21:03"}
 
 
 def add_minutes(time_str, minutes):
@@ -93,6 +93,7 @@ import os
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))
     app.run(host="0.0.0.0", port=port)
+
 
 
 
